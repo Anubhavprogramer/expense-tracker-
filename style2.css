@@ -1,0 +1,190 @@
+/* Apply box-sizing to all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Styling for the body */
+  body {
+    background-color: rgb(117, 11, 211);
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  /* Styling for the main container */
+  .container {
+    margin: 30px;
+    width: 90vh;
+    height: 90vh;
+    background-color: white;
+    border-radius: 60px;
+    box-shadow: 0px 0px 15px 11px rgb(212, 4, 254);
+    overflow: hidden;
+  }
+  
+  .box-1{
+    padding: 10px;
+    display: grid;
+    grid-template-rows: 25% 25% 25% 25%;
+  }
+  
+  /* Common styles for text inside income, expense, profit, and savings sections */
+  .income > p,
+  .expense > p,
+  .profit > p,
+  .savings > p {
+    font-size: 2rem;
+    margin: 10px;
+    font-family: 'Ysabeau Infant', sans-serif;
+  }
+ 
+  .income,
+  .expense,
+  .profit{
+    border-bottom: 1px solid #9b9696;
+  }
+  /* Styling for the text inside income, expense, profit, and savings sections */
+  .income > span,
+  .expense > span,
+  .profit > span,
+  .savings > span {
+    font-size:4rem;
+    font-family: 'Tektur', cursive;
+    display: block;
+    text-align: center;
+  }
+
+  .income > span {
+    color: green;
+  }
+  .expense > span {
+    color: red;
+  }
+  
+  
+  
+  /* Styling for the box-2 section */
+  .box-2 {
+    font-family: 'Ysabeau Infant', sans-serif;
+    font-weight: bolder;
+    padding: 15px 30px;
+  }
+  
+  .box-2 > span {
+    font-size: 2rem;
+    margin: 15% 15%;
+  }
+  
+  .box-2 > h3 {
+    font-size: 30px;
+    /* text-decoration: underline; */
+    border-bottom: 2px solid rgb(209, 203, 203);
+  }
+  
+  .box-2 > h4 {
+    font-size: 2rem;
+  }
+  
+  /* Styling for the description and amount inputs */
+  #description,
+  #amount {
+    border: 1px solid #dedede;
+    border-radius: 12px;
+    display: block;
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  #amount {
+    margin-bottom: 10px;
+  }
+  
+  /* Styling for the buttons section */
+  .buttons {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .add-transaction,
+  .reset,
+  .for-email {
+    background-color: blueviolet;
+    width: 30%;
+    color: white;
+    font-size: 20px;
+    font-family: 'Ysabeau Infant', sans-serif;
+    border-radius: 10px;
+    border: 2px solid blueviolet;
+    cursor: pointer;
+  }
+  
+  /* Styling for the history section */
+  .history {
+    border: 2px solid black;
+    height: 30%;
+    border-radius: 60px;
+    margin-top: 10px;
+  }
+  
+  .history > span {
+    display: flex;
+    justify-content: center;
+    text-decoration: underline;
+    font-size: large;
+  }
+  
+  /* Styling for the content section */
+  .content {
+    overflow: auto;
+    max-height: 70%;
+    width: 97%;
+  }
+  
+  .content > ul {
+    padding: 30px;
+    /* list-style: none; */
+    overflow: auto;
+  }
+  
+  /* Styling for the getemail input */
+  #getemail {
+    border: 1px solid #dedede;
+    border-radius: 12px;
+    display: block;
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+    margin: 10px 4px;
+  }
+  
+  .email2 {
+    margin: 0px 7px;
+  }
+  
+  /* Media query for smaller screens */
+  @media only screen and (max-width: 1180px) {
+    body {
+        background-color: rgb(117, 11, 211);
+        display: block;
+      }
+    .container {
+        margin: 30px auto;
+        width: 90vh;
+        height: 90vh;
+        background-color: white;
+        border-radius: 60px;
+        box-shadow: 0px 0px 15px 11px rgb(212, 4, 254);
+        overflow: hidden;
+    }
+  }
+
+
+  @media only screen and (max-width: 790px) {
+    
+    .container {
+        border-radius: 0px;
+    }
+  }
+  
