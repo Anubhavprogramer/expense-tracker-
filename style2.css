@@ -32,7 +32,7 @@
   /* Common styles for text inside income, expense, profit, and savings sections */
   .income > p,
   .expense > p,
-  .profit > p,
+  .current > p,
   .savings > p {
     font-size: 2rem;
     margin: 10px;
@@ -41,13 +41,13 @@
  
   .income,
   .expense,
-  .profit{
+  .current{
     border-bottom: 1px solid #9b9696;
   }
   /* Styling for the text inside income, expense, profit, and savings sections */
   .income > span,
   .expense > span,
-  .profit > span,
+  .current > span,
   .savings > span {
     font-size:4rem;
     font-family: 'Tektur', cursive;
@@ -88,7 +88,7 @@
   
   /* Styling for the description and amount inputs */
   #description,
-  #amount {
+  .amount {
     border: 1px solid #dedede;
     border-radius: 12px;
     display: block;
@@ -97,7 +97,7 @@
     width: 100%;
   }
   
-  #amount {
+  .amount {
     margin-bottom: 10px;
   }
   
@@ -121,11 +121,13 @@
   }
   
   /* Styling for the history section */
+
   .history {
     border: 2px solid black;
     height: 30%;
-    border-radius: 60px;
+    border-radius: 30px;
     margin-top: 10px;
+    height: max-content;
   }
   
   .history > span {

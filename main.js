@@ -1,91 +1,90 @@
-let profitOrLoss = 0;
-let transactionArr = [];
+document.addEventListener('DOMContentLoaded', () => {
+  const incomeElement = document.querySelector('.income span');
+  const expenseElement = document.querySelector('.expense span');
+  const savingElement = document.querySelector('.savings span');
+  const currentElement = document.querySelector('.current span');
+  const transactionList = document.querySelector('.content-List'); // Ensure this matches the HTML class
+  const itemDescription = document.querySelector('#description');
+  const expense = document.getElementById('expense');
+  const income = document.getElementById('income');
 
-let minSaving = prompt("Enter the minimum saving amount");
+  // Initial savings value
+  let minSaving = 100;
+  savingElement.textContent = minSaving.toFixed(2);
 
-let loss;
-function update_income() {
-  let incomeElement = document.querySelector('.income span');
-  let expenseElement = document.querySelector('.expense span');
-  let profitElement = document.querySelector('.profit span');
-  let savingElement = document.querySelector('.savings span');
-  let transactionlist = document.querySelector('.content ul');
-  let itemdiscreption = document.querySelector('#description');
-  let discreptionData = itemdiscreption.value;
-  let amountElement = document.getElementById('amount');
-  let amountData = parseFloat(amountElement.value); // Parse as a floating-point number
-  
-  if(discreptionData=="" || amountData=="")
-  {
-    alert("Enter a valid discreption and amount");
-    return;
+  let transactionArr = [];
+
+  // Update income and expense
+  document.querySelector('.add-transaction').addEventListener('click', (e) => {
+    e.preventDefault();
+    updateIncome();
+  });
+
+  function updateIncome() {
+    let descriptionData = itemDescription.value.trim();
+    let expenseValue = parseFloat(expense.value) || 0; // Parse as a floating-point number
+    let incomeValue = parseFloat(income.value) || 0; // Parse as a floating-point number
+
+    if (descriptionData === '' || (expenseValue === 0 && incomeValue === 0)) {
+      alert('Please enter description and amount properly');
+      return;
+    }
+
+    if (expenseValue < 0 || incomeValue < 0) {
+      alert('Please enter a positive number');
+      return;
+    }
+
+    let oldExpense = parseFloat(expenseElement.textContent) || 0;
+    let oldIncome = parseFloat(incomeElement.textContent) || 0;
+
+    if (expenseValue !== 0) {
+      oldExpense += expenseValue;
+      expenseElement.textContent = oldExpense.toFixed(2);
+    }
+
+    if (incomeValue !== 0) {
+      oldIncome += incomeValue;
+      incomeElement.textContent = oldIncome.toFixed(2);
+    }
+
+    let current = oldIncome - oldExpense;
+    currentElement.textContent = current.toFixed(2);
+
+    // Savings management
+    if (oldIncome < oldExpense) {
+      let tempSavings = minSaving - oldExpense + oldIncome;
+      savingElement.textContent = tempSavings.toFixed(2);
+    } else {
+      savingElement.textContent = minSaving.toFixed(2);
+    }
+
+    // Log the transaction
+    let transaction = { description: descriptionData, amount: incomeValue || expenseValue };
+    transactionArr.push(transaction);
+
+    let listItem = document.createElement('li');
+    listItem.textContent = `${transaction.description} -----> ${transaction.amount.toFixed(2)}`;
+    transactionList.appendChild(listItem);
+
+    // Clear input fields after processing
+    itemDescription.value = "";
+    expense.value = "";
+    income.value = "";
   }
 
-  if (amountData < 0) {
-    let expense = parseFloat(expenseElement.textContent);
-    expense += amountData;
-    expenseElement.textContent = expense.toFixed(2); // Display expenses with 2 decimal places
-  } else {
-    let income = parseFloat(incomeElement.textContent);
-    income += amountData;
-    incomeElement.textContent = income.toFixed(2); // Display income with 2 decimal places
+  // Function to send data via email
+  document.querySelector('.for-email').addEventListener('click', sendViaEmail);
+
+  function sendViaEmail() {
+    let email = document.getElementById('getemail');
+    let emaildata = email.value;
+    if (emaildata.includes('@')) {
+      alert('Send the data via email... to ' + emaildata);
+    } else {
+      alert("Please enter a valid email address.");
+    }
   }
 
-  profitOrLoss += amountData;
-  if (profitOrLoss > 0) {
-    profitElement.style.color = 'green';
-  } else {
-    profitElement.style.color = 'red';
-  }
-  
-
-  if (profitOrLoss > minSaving) {
-    savingElement.style.color = 'green';
-    savingElement.textContent = profitOrLoss.toFixed(2);
-  } else {
-    savingElement.style.color = 'red';
-    loss=minSaving-profitOrLoss;
-    savingElement.textContent = loss.toFixed(2);
-  }
-  
-  profitElement.textContent = profitOrLoss.toFixed(2); // Display profit/loss with 2 decimal places
-  
-  let amountData2 = discreptionData + " -----> "+amountData;
-  itemdiscreption.value=" ";
-  amountElement.value=" ";
-  transactionArr.push(amountData2);
-  
-  transactionlist.innerHTML="";
-  for(let i=0;i<transactionArr.length;i++){
-        let listItem = document.createElement('li');
-        listItem.textContent=transactionArr[i];
-        transactionlist.appendChild(listItem);
-  }
-
-}
-
-function reset() {
-  let expenseElement = document.querySelector('.expense span');
-  let profitElement = document.querySelector('.profit span');
-  let incomeElement = document.querySelector('.income span');
-  let transactionlist = document.querySelector('.content ul');
-  let savingElement = document.querySelector('.savings span');
-  transactionlist.innerHTML="";
-  expenseElement.textContent = '00.00'; // Fixed the displayed format
-  profitElement.textContent = '00.00'; // Fixed the displayed format
-  incomeElement.textContent = '00.00'; // Fixed the displayed format
-  savingElement.textContent = '00.00'; // Fixed the displayed format
-  profitOrLoss=0;
-  transactionArr=[]
-}
-function sendViaEmail() {
-  let email=document.getElementById('getemail');
-  let emaildata=email.value;
-  if (emaildata.includes('@')){
-    alert('Send the data via email... to '+emaildata);
-  } else {
-    alert("Please enter a valid email address.");
-  }
-}
-
-console.log('hey');
+  console.log('minSaving', minSaving);
+});
