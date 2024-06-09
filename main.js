@@ -1,13 +1,15 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const incomeElement = document.querySelector('.income span');
-  const expenseElement = document.querySelector('.expense span');
-  const savingElement = document.querySelector('.savings span');
-  const currentElement = document.querySelector('.current span');
-  const transactionList = document.querySelector('.content-List'); // Ensure this matches the HTML class
-  const itemDescription = document.querySelector('#description');
-  const expense = document.getElementById('expense');
-  const income = document.getElementById('income');
 
+  const incomeElement = document.querySelector(".income span");
+  const expenseElement = document.querySelector(".expense span");
+  const savingElement = document.querySelector(".savings span");
+  const currentElement = document.querySelector(".current span");
+  const transactionList = document.querySelector(".content-List");
+  const itemDescription = document.querySelector("#description");
+  const expense = document.getElementById("expense");
+  const income = document.getElementById("income");
+  
+  let data = {};
+  
   // Initial savings value
   let minSaving = 100;
   savingElement.textContent = minSaving.toFixed(2);
@@ -15,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let transactionArr = [];
 
   // Update income and expense
-  document.querySelector('.add-transaction').addEventListener('click', (e) => {
+  document.querySelector(".add-transaction").addEventListener("click", (e) => {
     e.preventDefault();
     updateIncome();
   });
@@ -25,13 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let expenseValue = parseFloat(expense.value) || 0; // Parse as a floating-point number
     let incomeValue = parseFloat(income.value) || 0; // Parse as a floating-point number
 
-    if (descriptionData === '' || (expenseValue === 0 && incomeValue === 0)) {
-      alert('Please enter description and amount properly');
+    if (descriptionData === "" || (expenseValue === 0 && incomeValue === 0)) {
+      alert("Please enter description and amount properly");
       return;
     }
 
     if (expenseValue < 0 || incomeValue < 0) {
-      alert('Please enter a positive number');
+      alert("Please enter a positive number");
       return;
     }
 
@@ -60,11 +62,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Log the transaction
-    let transaction = { description: descriptionData, amount: incomeValue || expenseValue };
+    let transaction = {
+      description: descriptionData,
+      amount: incomeValue || expenseValue,
+    };
+
+    data = {
+      expense: oldExpense,
+      income: oldIncome,
+      description: descriptionData,
+      date: new Date().toLocaleString(),
+      time: new Date().toLocaleTimeString(),
+    };
+
     transactionArr.push(transaction);
 
-    let listItem = document.createElement('li');
-    listItem.textContent = `${transaction.description} -----> ${transaction.amount.toFixed(2)}`;
+    let listItem = document.createElement("li");
+    listItem.textContent = `${
+      transaction.description
+    } -----> ${transaction.amount.toFixed(2)}`;
     transactionList.appendChild(listItem);
 
     // Clear input fields after processing
@@ -73,18 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
     income.value = "";
   }
 
-  // Function to send data via email
-  document.querySelector('.for-email').addEventListener('click', sendViaEmail);
+  // console.log("minSaving", minSaving);
 
-  function sendViaEmail() {
-    let email = document.getElementById('getemail');
-    let emaildata = email.value;
-    if (emaildata.includes('@')) {
-      alert('Send the data via email... to ' + emaildata);
-    } else {
-      alert("Please enter a valid email address.");
-    }
-  }
-
-  console.log('minSaving', minSaving);
-});
+export { data, updateIncome };

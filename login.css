@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(117, 11, 211);
+}
+.Google{
+    background-color: white;
+    border: 2px solid #000000;
+    border-radius: 20px;
+    width: 300px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.Google span{
+    font-size: 20px;
+    color: #000000;
+    margin-left: 10px;
+}
+
+.Google img{
+    width: 25px;
+    height: 25px;
+}
