@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 
 let user = null; // Exported as a module-level variable
 const firebaseConfig = {
@@ -28,6 +28,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const result = await signInWithPopup(auth, provider);
         user = result.user;
         console.log(user);
+
+        // Store or update user data in Firestore
+        const userDocRef = doc(db, 'users', user.uid);
+        await setDoc(userDocRef, {
+          name: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+          lastLogin: new Date()
+        });
+
         window.location.href = "main.html";
       } catch (error) {
         const errorCode = error.code;
@@ -39,17 +49,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const logout = document.getElementById('logout');
   if (logout) {
-    logout.addEventListener('click', () => {
-      console.log('logout clicked');
-      auth.signOut().then(() => {
+    logout.addEventListener('click', async () => {
+      try {
+        console.log('logout clicked');
+        await auth.signOut();
         console.log('User signed out');
         user = null; // Reset user on sign out
         window.location.href = "Login.html";
-      }).catch((error) => {
+      } catch (error) {
         console.error(error);
-      });
+      }
     });
   }
+
+  // Check authentication state
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log('User is signed in:', user);
+      // Optionally, you can perform actions with the user data here
+    } else {
+      console.log('No user is signed in');
+      if (window.location.pathname.endsWith('main.html')) {
+        window.location.href = "Login.html";
+      }
+    }
+  });
 });
 
 export { auth, db, user }; // Export user
