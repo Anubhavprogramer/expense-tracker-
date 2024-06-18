@@ -9,6 +9,9 @@
   body {
     background-color: rgb(117, 11, 211);
     font-family: 'Ysabeau Infant', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .main {
     display: flex;
@@ -223,4 +226,22 @@ header {
   cursor: pointer;
   margin: 10px;
 }
-  
+
+
+.incomechart{
+  width: 90%;
+  height: 90vh;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 60px;
+  margin: 50px;
+}
+
+.dataholder{
+  width: 95%;
+  height: 90%;
+  background-color: red;
+}

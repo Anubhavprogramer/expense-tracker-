@@ -68,8 +68,8 @@
     };
 
     data = {
-      expense: oldExpense,
-      income: oldIncome,
+      expense: expenseValue,
+      income: incomeValue,
       description: descriptionData,
       date: new Date().toLocaleString(),
       time: new Date().toLocaleTimeString(),
