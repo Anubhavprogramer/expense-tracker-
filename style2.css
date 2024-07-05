@@ -292,7 +292,7 @@ header {
   display: block;
 }
 
-.dropdown-content span:hover {background-color: rgb(159, 78, 235);}
+.dropdown-content span:hover {background-color: rgb(177, 102, 248);}
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: #f1f1f1}

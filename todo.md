@@ -10,3 +10,6 @@
 
 
 6) Saving will store the some value initially and if expense will be added and income is zero than amount will be deducted from savings
+
+7) add a monthely section
+

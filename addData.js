@@ -64,6 +64,8 @@ const addData = async (data) => {
   }
   try {
     const userDocRef = doc(db, "users", user.uid);
+    
+    // create a string that will used as the document name monthly  name must have month asnd yead combined togather
     const subcollectionRef = collection(userDocRef, "transactions"); // Create a subcollection under users/user.uid/transactions
     await addDoc(subcollectionRef, data);
     console.log('Data added successfully to subcollection');
