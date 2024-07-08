@@ -21,6 +21,7 @@
 
   <body>
     <header>
+      <h1>Expense Tracker</h1>
       <button class="Logout" id="logout">Logout</button>
     </header>
     <div class="main">
@@ -85,35 +86,34 @@
       <div class="incomechart">
         <h1>EXPENSE CHART</h1>
         <div class="data_sorter">
-          <!-- expense, income, both -->
-          <div class="dropdown">
-            <button class="dropbtn">Income and Expense</button>
-            <div class="dropdown-content">
-                <span>Income & expense</span>
-                <span>Income</span>
-                <span>Income</span>
-            </div>
+          
+          <form action="">
+
+            <input type="month" id="time" name="" class="monthupdate" id="">
+
+            <button id="getdata" class="GetData" >Get Data</button>
+
+          </form>
+
           </div>
-            <!-- drop down for month  -->
-            <!-- per week  -->
-            <!-- permonths -->
-            <div class="dropdown">
-              <button class="dropbtn">Monthly</button>
-              <div class="dropdown-content">
-                  <span>Monthly</span>
-                  <span>Weekly</span>
-                  <span>Income</span>
-              </div>
-            </div>
-        </div>
-        <div class="dataholder">
+          <div class="dataholder">
+            <table id="table-body">
+              <tr>
+                <th>Date and Time</th>
+                <th>Description</th>
+                <th>Income</th>
+                <th>Expense</th>
+              </tr>
+            </table>
+          </div>
 
         </div>
       </div>
 
 
     <script src="main.js" defer type="module"></script>
-    <script src="./database.js" defer type="module"></script>
+    <script src="./login.js" defer type="module"></script>
     <script src="./addData.js" defer type="module"></script>
+    <script src="./dataSetter.js" defer type="module"></script>
   </body>
 </html>

@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         const result = await signInWithPopup(auth, provider);
         user = result.user;
-        console.log(user);
+        // console.log(user);
 
         // Store or update user data in Firestore
         const userDocRef = doc(db, 'users', user.uid);
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Check authentication state
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log('User is signed in:', user);
+      // console.log('User is signed in:', user);
       // Optionally, you can perform actions with the user data here
     } else {
       console.log('No user is signed in');
