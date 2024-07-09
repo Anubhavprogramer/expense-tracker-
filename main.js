@@ -13,6 +13,7 @@ let data = {};
 
 // Initial savings value
 let minSaving = prompt("Enter the minimum savings value") || 0;
+minSaving = parseFloat(minSaving); // Convert the input to a number
 savingElement.textContent = minSaving.toFixed(2);
 
 let transactionArr = [];
