@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (error) {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.error(`Error ${errorCode}: ${errorMessage}`);
+        // console.error(`Error ${errorCode}: ${errorMessage}`);
       }
     });
   }
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       console.log('No user is signed in');
       if (window.location.pathname.endsWith('main.html')) {
-        window.location.href = "Login.html";
+        window.location.href = "index.html";
       }
     }
   });

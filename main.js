@@ -12,7 +12,7 @@ const income = document.getElementById("income");
 let data = {};
 
 // Initial savings value
-let minSaving = 100;
+let minSaving = prompt("Enter the minimum savings value") || 0;
 savingElement.textContent = minSaving.toFixed(2);
 
 let transactionArr = [];
